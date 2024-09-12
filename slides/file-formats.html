@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>File Formats</title>
+
+    <link rel="stylesheet" href="../dist/reset.css" />
+    <link rel="stylesheet" href="../dist/reveal.css" />
+    <link rel="stylesheet" href="../dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="../dist/main.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>File formats</h1>
+          </section>
+
+          <!-- Dia 2: CSV -->
+          <section>
+            <h2>CSV</h2>
+            <ul>
+              <li>Comma Separated Values</li>
+              <li>tabulaire gegevens</li>
+              <li>platte tekst met komma's om waarden te scheiden</li>
+              <li>gebruikt in excel om gegevens te delen</li>
+            </ul>
+          </section>
+          <section>
+            <code>
+              <pre>
+                        Naam, Leeftijd, Stad
+                        Alice, 28, New York
+                        Bob, 32, Los Angeles
+                        Carol, 24, Chicago
+                        </pre
+              >
+            </code>
+          </section>
+
+          <section>
+            <img src="../assets/images/file-formats/csv.jpg" alt="" />
+          </section>
+
+          <!-- Dia 3: JSON -->
+          <section>
+            <h2>JSON</h2>
+            <ul>
+              <li>JavaScript Object Notation</li>
+              <li>Populaire voor gegevensuitwisseling</li>
+              <li>tekst met attribuut-waarde paren</li>
+            </ul>
+          </section>
+          <section>
+            <code>
+              <pre>
+                        {
+                            "naam": "Alice",
+                            "leeftijd": 28,
+                            "stad": "New York"
+                        }
+                        {
+                            "naam": "Bob",
+                            "leeftijd": 32,
+                            "stad": "Los Angeles"
+                        }
+                        {
+                            "naam": "Carol",
+                            "leeftijd": 24,
+                            "stad": "Chicago"
+                        }
+                        </pre
+              >
+            </code>
+          </section>
+          <section>
+            <img src="../assets/images/file-formats/json.png" alt="" />
+          </section>
+          <!-- Dia 4: XML -->
+          <section>
+            <h2>XML</h2>
+            <ul>
+              <li>Extensible Markup Language</li>
+              <li>
+                Veelzijdige taal voor mens- en machineleesbare documenten.
+              </li>
+              <li>Gebruikt voor gegevensuitwisseling en configuratie.</li>
+            </ul>
+          </section>
+          <section>
+            <pre>
+                        <persoon>
+                            <naam>Alice</naam>
+                            <leeftijd>28</leeftijd>
+                            <stad>New York</stad>
+                        </persoon>
+                        <persoon>
+                            <naam>Bob</naam>
+                            <leeftijd>32</leeftijd>
+                            <stad>Los Angeles</stad>
+                        </persoon>
+                        <persoon>
+                            <naam>Carol</naam>
+                            <leeftijd>24</leeftijd>
+                            <stad>Chicago</stad>
+                        </persoon>
+                        </pre>
+          </section>
+          <section>
+            <img src="../assets/images/file-formats/xml.webp" alt="" />
+          </section>
+          <!-- Dia 5: YAML -->
+          <section>
+            <h2>YAML</h2>
+            <ul>
+              <li>YAML is not a Markup Language</li>
+              <li>
+                leesbare gegevensindeling voor configuratie en uitwisseling
+              </li>
+              <li>inspringing voor structuur</li>
+            </ul>
+          </section>
+          <section>
+            <pre>
+                        - naam: Alice
+                          leeftijd: 28
+                          stad: New York
+                        - naam: Bob
+                          leeftijd: 32
+                          stad: Los Angeles
+                        - naam: Carol
+                          leeftijd: 24
+                          stad: Chicago
+                        </pre
+            >
+          </section>
+          <section>
+            <img
+              src="../assets/images/file-formats/yaml-434829076.png"
+              alt=""
+            />
+          </section>
+          <!-- Dia 6: Excel -->
+          <section>
+            <h2>Excel Werkblad</h2>
+            <ul>
+              <li>XLSX-bestanden voor tabulaire gegevens en analyse.</li>
+              <li>Ondersteunt werkbladen, formules en opmaak.</li>
+            </ul>
+          </section>
+          <section>
+            <img
+              src="../assets//images/file-formats/new-business-excel-spreadsheet.jpg"
+              alt=""
+            />
+          </section>
+
+          <!-- Dia 7: SQLite -->
+          <section>
+            <h2>SQLite Database</h2>
+            <ul>
+              <li>
+                Serverloze SQL-database voor ingebedde systemen en mobiele apps.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <img src="../assets//images/file-formats/sqlite.png" alt="" />
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Binaire indelingen</h2>
+          </section>
+          <section>
+            <h2>Protobuf</h2>
+            <ul>
+              <li>Protocol Buffers</li>
+              <li>binair</li>
+              <li>gebruikt in Google</li>
+            </ul>
+          </section>
+
+          <!-- Dia 15: MessagePack -->
+          <section>
+            <h2>MessagePack</h2>
+            <ul>
+              <li>Binaire serialisatie-indeling</li>
+              <li>goede prestaties en efficiëntie</li>
+              <li>
+                gegevensuitwisseling tussen systemen in verschillende talen
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Rij versus Kolomindelingen</h2>
+            <section>
+              <h3>Rijindeling</h3>
+              <ul>
+                <li>Traditionele organisatie per record</li>
+                <li>Schrijfintensief, eenvoudig toevoegen van gegevens</li>
+                <li>Efficiëntie voor leesbewerkingen is laag</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Kolomindeling</h3>
+              <ul>
+                <li>Waarden van kolommen worden samen opgeslagen</li>
+                <li>
+                  Efficiënt voor leesbewerkingen, specifieke kolommen bevragen
+                </li>
+                <li>Ondersteunt efficiënte compressie en codering</li>
+              </ul>
+            </section>
+          </section>
+          <section>
+            <img
+              src="../assets//images/file-formats/messagepack-vs-json.png"
+              alt=""
+            />
+          </section>
+
+          <!-- Dia 8: Parquet -->
+          <section>
+            <h2>Parquet</h2>
+            <ul>
+              <li>Kolomsgewijze indeling</li>
+              <li>gebruikt in Hadoop en andere big data-tools.</li>
+              <li>Goed voor snel lezen data</li>
+              <li>Analyses met eenmalig schrijven, vaak lezen</li>
+              <li>Ondersteunt complexe geneste gegevensstructuren</li>
+              <li>Zelfbeschrijvend met metadata</li>
+            </ul>
+          </section>
+          <section>
+            <img src="../assets//images/file-formats/parquet.JPG" alt="" />
+          </section>
+          <section>
+            <img
+              src="../assets//images/file-formats/parquet-example.png"
+              alt=""
+            />
+          </section>
+          <!-- Dia 9: Avro -->
+          <section>
+            <h2>Avro</h2>
+            <ul>
+              <li>Rij-gebaseerd</li>
+              <li>binaire indeling</li>
+              <li>Gebruikt in Hadoop en andere big data-tools.</li>
+              <li>Goed voor snel schrijven data</li>
+            </ul>
+          </section>
+
+          <section>
+            <img src="../assets/images/file-formats/avro-exapmle.png" alt="" />
+          </section>
+          <!-- Dia 10: ORC -->
+          <section>
+            <h2>ORC</h2>
+            <ul>
+              <li>Optimal Record Columnar</li>
+              <li>open-source</li>
+              <li>kolomsgewijs</li>
+              <li>Goed voor snel lezen data</li>
+              <li>Ondersteunt ACID-transacties</li>
+              <li>Efficiënte compressie met Snappy en Zlib</li>
+            </ul>
+          </section>
+          <section>
+            <img
+              src="../assets//images/file-formats/orc_file_structure.png"
+              alt=""
+            />
+          </section>
+          <!-- Dia 11: HDF5 -->
+          <section>
+            <h2>HDF5</h2>
+            <ul>
+              <li>Hierarchical Data Format</li>
+              <li>grote hoeveelheden wetenschappelijke gegevens</li>
+              <li>Ondersteunt complexe structuren en hiërarchieën</li>
+            </ul>
+          </section>
+          <section>
+            <img
+              src="../assets//images/file-formats/hdf5_structure4.jpg"
+              alt=""
+            />
+          </section>
+        </section>
+        <!-- Dia 1 -->
+      </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

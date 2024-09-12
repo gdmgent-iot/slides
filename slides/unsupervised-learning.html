@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Machine Learning vs. Traditioneel Programmeren</title>
+
+    <link rel="stylesheet" href="../dist/reset.css" />
+    <link rel="stylesheet" href="../dist/reveal.css" />
+    <link rel="stylesheet" href="../dist/theme/black.css" />
+
+    <!-- Thema gebruikt voor syntax-highlighted code -->
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="../dist/main.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <!-- Dia 1 -->
+          <section>
+            <h1>Hiërarchische vs K-Means Clustering</h1>
+            <p>Begrijp de belangrijkste verschillen in clusteringtechnieken.</p>
+          </section>
+
+          <!-- Dia 2 -->
+          <section>
+            <h2>Belangrijkste punten</h2>
+            <ul>
+              <li>
+                Hiërarchische clustering creëert een hiërarchie; K-Means creëert
+                een vast aantal clusters.
+              </li>
+              <li>
+                Hiërarchische clustering is geschikt voor kleine datasets;
+                K-Means is geschikt voor grote datasets.
+              </li>
+              <li>
+                De keuze hangt af van de aard van de dataset en het doel van de
+                analyse.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Dia 3 -->
+          <section>
+            <h2>Inleiding tot Clustering</h2>
+            <p>
+              Clustering groepeert vergelijkbare datapunten; wordt gebruikt in
+              gegevensanalyse, beeldverwerking en meer.
+            </p>
+            <p>
+              Doel: Identificeer groepen objecten die binnen groepen
+              vergelijkbaar zijn en tussen groepen verschillend.
+            </p>
+          </section>
+
+          <!-- Dia 4 -->
+          <section>
+            <h2>Hiërarchische Clustering</h2>
+            <p>
+              Bouwt een hiërarchie van clusters op; wordt gebruikt wanneer het
+              aantal clusters onbekend is.
+            </p>
+            <p>
+              Begint met elk punt als een cluster, voegt de dichtstbijzijnde
+              paren samen totdat alle punten tot één cluster behoren.
+            </p>
+          </section>
+
+          <!-- Dia 5 -->
+          <section>
+            <h2>K-Means Clustering</h2>
+            <p>
+              Partitiemethode; verdeelt gegevens in k clusters op basis van
+              gemiddelde nabijheid.
+            </p>
+            <p>
+              Snel en efficiënt, geschikt voor grote datasets; gaat uit van
+              sferische clusters en is gevoelig voor uitschieters.
+            </p>
+          </section>
+
+          <!-- Dia 6 -->
+          <section>
+            <h2>Belangrijkste verschillen</h2>
+            <ul>
+              <li>
+                Hiërarchisch: Agglomeratief of divisief; K-Means: Partitief.
+              </li>
+              <li>
+                Hiërarchisch: Bepaalt clusters vanuit dendrogram; K-Means:
+                Gebruiker geeft het aantal clusters op.
+              </li>
+              <li>
+                Hiërarchisch: Handelt niet-convexe vormen af; K-Means: Gaat uit
+                van sferische clusters.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Dia 7 -->
+          <section>
+            <h2>Toepassingen</h2>
+            <p>
+              Hiërarchisch: Grote datasets, natuurlijke groeperingen; K-Means:
+              Classificatie, voorspelling, compressie.
+            </p>
+          </section>
+
+          <!-- Dia 8 -->
+          <section>
+            <h2>Centroids en Afstand</h2>
+            <p>
+              K-Means: Gebruikt centroids om afstanden te minimaliseren;
+              Hiërarchisch: Geen centroids, hiërarchische structuur.
+            </p>
+          </section>
+
+          <!-- Dia 9 -->
+          <section>
+            <h2>Voor- en nadelen</h2>
+            <p>
+              <strong>Hiërarchisch:</strong> Makkelijk te interpreteren, geen
+              vaste clusters, visuele representatie.
+            </p>
+            <p>
+              <strong>K-Means:</strong> Snel, efficiënt, strakke clusters,
+              geschikt voor grote datasets.
+            </p>
+            <p>
+              Overweeg afwegingen in rekenkundige complexiteit, gevoeligheid
+              voor uitschieters en datasetkenmerken.
+            </p>
+          </section>
+
+          <!-- Dia 10 -->
+          <section>
+            <h2>Toepassing van Clustering</h2>
+            <p>
+              In bedrijf, marketing, verkennende gegevensanalyse en
+              voorspellende modellering.
+            </p>
+            <p>
+              Identificeer klantsegmenten, verken datapatronen en voorspel
+              toekomstig gedrag.
+            </p>
+          </section>
+
+          <!-- Dia 11 -->
+          <section>
+            <h2>Andere Clusteringmethoden</h2>
+            <p>
+              <strong>DBSCAN:</strong> Dichtheidsgebaseerd, behandelt clusters
+              van willekeurige vormen.
+            </p>
+            <p>
+              <strong>Factoextra:</strong> Visualiseert clusteringresultaten,
+              handig voor gegevens met veel dimensies.
+            </p>
+          </section>
+
+          <!-- Dia 12 -->
+          <section>
+            <h2>Conclusie</h2>
+            <p>
+              Kies een clusteringmethode op basis van analysebehoeften en
+              datasetkenmerken.
+            </p>
+            <p>
+              Zowel hiërarchische als K-Means clustering hebben unieke sterke
+              punten en toepassingen.
+            </p>
+          </section>
+          <section>
+            <h2>Samenvatting</h2>
+            <table style="font-size: 0.5em">
+              <thead>
+                <tr>
+                  <th>Kenmerk</th>
+                  <th>Hiërarchische Clustering</th>
+                  <th>K-Means Clustering</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Soort clustering</td>
+                  <td>Agglomeratief (bottom-up) of divisief (top-down)</td>
+                  <td>Partitief (centroid-gebaseerd)</td>
+                </tr>
+                <tr>
+                  <td>Aantal clusters</td>
+                  <td>
+                    Kan worden bepaald door de dendrogram of gekozen door de
+                    gebruiker
+                  </td>
+                  <td>Moet worden gespecificeerd door de gebruiker</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <table style="font-size: 0.5em">
+              <thead>
+                <tr>
+                  <th>Kenmerk</th>
+                  <th>Hiërarchische Clustering</th>
+                  <th>K-Means Clustering</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cluster vorm</td>
+                  <td>
+                    Kan omgaan met niet-convexe vormen en variabele
+                    clusterformaten
+                  </td>
+                  <td>Gaat uit van sferische en even grote clusters</td>
+                </tr>
+                <tr>
+                  <td>Afstandsmaat</td>
+                  <td>
+                    Kan verschillende afstandsmaatregelen gebruiken, zoals
+                    Euclidisch, Manhattan of cosinus
+                  </td>
+                  <td>Moet de Euclidische afstand gebruiken</td>
+                </tr>
+                <tr>
+                  <td>Schaalbaarheid</td>
+                  <td>
+                    Kan rekenkundig duur zijn voor grote datasets of veel
+                    clusters
+                  </td>
+                  <td>
+                    Kan grote datasets en veel clusters efficiënt verwerken
+                  </td>
+                </tr>
+                <tr>
+                  <td>Interpreteerbaarheid</td>
+                  <td>
+                    Biedt een hiërarchische structuur en dendrogram die kunnen
+                    helpen bij het interpreteren van de clusteringresultaten
+                  </td>
+                  <td>
+                    Biedt clustercentra en toewijzingen, maar geen hiërarchische
+                    structuur
+                  </td>
+                </tr>
+                <tr>
+                  <td>Robuustheid tegen uitschieters</td>
+                  <td>
+                    Kan omgaan met uitschieters en ruis, maar kan ze samenvoegen
+                    met bestaande clusters
+                  </td>
+                  <td>
+                    Gevoelig voor uitschieters en ruis, wat de clustercentra kan
+                    beïnvloeden
+                  </td>
+                </tr>
+                <tr>
+                  <td>Toepassingen</td>
+                  <td>
+                    Nuttig voor verkennende analyse, het vinden van natuurlijke
+                    groeperingen en het visualiseren van gegevens
+                  </td>
+                  <td>
+                    Nuttig voor classificatie, voorspelling en
+                    gegevenscompressie
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+      // Meer informatie over initialisatie & configuratie:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Leer over plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
