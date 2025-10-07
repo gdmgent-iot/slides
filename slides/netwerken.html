@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Netwerken</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML" />
+    <meta name="author" content="Hakim El Hattab" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../dist/reset.css" />
+    <link rel="stylesheet" href="../dist/reveal.css" />
+    <link rel="stylesheet" href="../dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
+    <style>
+        .reveal table.network-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+            font-size: 0.95rem;
+            margin-top: 1em;
+        }
+
+        .reveal table.network-table th,
+        .reveal table.network-table td {
+            padding: 0.5em 0.75em;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        .reveal table.network-table thead tr {
+            background-color: #222;
+        }
+
+        .reveal table.network-table tbody tr {
+            background-color: #111;
+        }
+
+        /* fix: make table rows appear one by one */
+        .reveal table.network-table tr.fragment {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .reveal table.network-table tr.fragment.visible {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Intro -->
+            <section
+                data-background="https://www.digitale-baustelle.com/wp/wp-content/uploads/2020/01/Portfolio_IoT_Bild-scaled.jpg"
+                data-background-opacity=".1">
+                <h2>Fundamenten van Netwerken</h2>
+                <p>Internet of Things 2024–25</p>
+            </section>
+
+            <!-- Netwerken -->
+            <section>
+                <section>
+                    <h2>Wat is een Netwerk?</h2>
+                    <ul>
+                        <li>Knooppunten (apparaten met netwerkfunctie)</li>
+                        <li>Verbindingen tussen knooppunten</li>
+                        <li>Combinatie van hardware, software, bekabeling en draadloze technologie</li>
+                    </ul>
+                </section>
+
+                <section data-background="../assets/network/network-diagram.svg" data-background-opacity=".4">
+                    <h2>Topologieën</h2>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Korte uitleg</th>
+                        </tr>
+                        <tr>
+                            <td>Point-to-point</td>
+                            <td>Directe verbinding tussen twee knooppunten</td>
+                        </tr>
+                        <tr>
+                            <td>Bus</td>
+                            <td>Eén gedeelde communicatielijn</td>
+                        </tr>
+                        <tr>
+                            <td>Ring</td>
+                            <td>Elk knooppunt met twee buren verbonden</td>
+                        </tr>
+                        <tr>
+                            <td>Star</td>
+                            <td>Alle knooppunten via centrale hub</td>
+                        </tr>
+                        <tr>
+                            <td>Tree</td>
+                            <td>Hiërarchische sterstructuur</td>
+                        </tr>
+                        <tr>
+                            <td>Mesh</td>
+                            <td>Volledige redundantie via meerdere verbindingen</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section data-background="../assets/network/network-types-spatial-scopes.svg"
+                    data-background-size="contain">
+                    <h2>Netwerktypes</h2>
+                    <table class="network-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Bereik</th>
+                                <th>Voorbeeldtechnologie</th>
+                                <th>Toepassing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nano Network</td>
+                                <td>Microscopisch</td>
+                                <td>IEEE P1906.1</td>
+                                <td>Biomedisch, onderzoek</td>
+                            </tr>
+                            <tr>
+                                <td>Body Area Network (BAN)</td>
+                                <td>Rond lichaam</td>
+                                <td>IEEE 802.15.6</td>
+                                <td>Wearables</td>
+                            </tr>
+                            <tr>
+                                <td>Personal Area Network (PAN)</td>
+                                <td>Tot 10 m</td>
+                                <td>Bluetooth, Zigbee</td>
+                                <td>Persoonlijke apparaten</td>
+                            </tr>
+                            <tr>
+                                <td>Local Area Network (LAN)</td>
+                                <td>Gebouw</td>
+                                <td>Ethernet, Wi-Fi</td>
+                                <td>Bedrijven, scholen</td>
+                            </tr>
+                            <tr>
+                                <td>Metropolitan Area Network (MAN)</td>
+                                <td>Stad</td>
+                                <td>Metro Ethernet</td>
+                                <td>Stedelijke netwerken</td>
+                            </tr>
+                            <tr>
+                                <td>Wide Area Network (WAN)</td>
+                                <td>Land/wereldwijd</td>
+                                <td>LoRaWAN, MPLS</td>
+                                <td>Internet, IoT</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Communicatiemodellen</h2>
+                    <table>
+                        <tr>
+                            <th>Model</th>
+                            <th>Kernidee</th>
+                        </tr>
+                        <tr>
+                            <td>Client–Server</td>
+                            <td>Server levert diensten aan clients</td>
+                        </tr>
+                        <tr>
+                            <td>Peer-to-Peer</td>
+                            <td>Gelijke apparaten communiceren rechtstreeks</td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+
+            <!-- RFID & NFC -->
+            <section>
+                <section
+                    data-background="https://tls-bocasystems.com/foto/algemeen/tls-boca-systems-animation-card-reader-rfid.gif"
+                    data-background-opacity=".4">
+                    <h2>RFID</h2>
+                    <ul>
+                        <li>Radio-Frequency Identification</li>
+                        <li>Data op een transponder gelezen via radiogolven</li>
+                        <li>Unieke Electronic Product Code (EPC)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Soorten RFID-tags</h2>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Kenmerken</th>
+                        </tr>
+                        <tr>
+                            <td>Passief</td>
+                            <td>Geen batterij, korte afstand (1–10 cm)</td>
+                        </tr>
+                        <tr>
+                            <td>Semi-actief</td>
+                            <td>Zendt enkel bij inkomend signaal</td>
+                        </tr>
+                        <tr>
+                            <td>Actief</td>
+                            <td>Met batterij, bereik 10–100 m</td>
+                        </tr>
+                        <tr>
+                            <td>Chiploos</td>
+                            <td>Geen ID, werkt met reflectiepatronen</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Voordelen en Nadelen</h2>
+                    <table>
+                        <tr>
+                            <th>+</th>
+                            <th>−</th>
+                        </tr>
+                        <tr>
+                            <td>Meer info, herprogrammeerbaar</td>
+                            <td>Beperkte leesafstand</td>
+                        </tr>
+                        <tr>
+                            <td>Niet zichtbaar nodig</td>
+                            <td>Storingen bij metaal</td>
+                        </tr>
+                        <tr>
+                            <td>Efficiënte inventarisatie</td>
+                            <td>Gebrek aan standaardisatie</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section data-background="../assets/network/nfc.gif" data-background-opacity=".3">
+                    <h2>NFC (Near Field Communication)</h2>
+                    <ul>
+                        <li>Tot enkele cm afstand</li>
+                        <li>Actieve lezer & passieve tag</li>
+                        <li>Gebruikt in betalingen en toegangskaarten</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Draadloze technologieën -->
+            <section>
+                <section>
+                    <h2>Draadloze Netwerken</h2>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Frequentie</th>
+                            <th>Bereik</th>
+                            <th>Gebruik</th>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td>2.4 GHz</td>
+                            <td>Tot 10 m</td>
+                            <td>Apparaatkoppeling</td>
+                        </tr>
+                        <tr>
+                            <td>Wi-Fi</td>
+                            <td>2.4–5 GHz</td>
+                            <td>Tot 100 m</td>
+                            <td>LAN-connectiviteit</td>
+                        </tr>
+                        <tr>
+                            <td>Zigbee</td>
+                            <td>2.4 GHz</td>
+                            <td>Tot 100 m</td>
+                            <td>Smart home</td>
+                        </tr>
+                        <tr>
+                            <td>Z-Wave</td>
+                            <td>868 MHz</td>
+                            <td>Tot 30 m</td>
+                            <td>Domotica</td>
+                        </tr>
+                        <tr>
+                            <td>LoRa</td>
+                            <td>433/868 MHz</td>
+                            <td>Tot 15 km</td>
+                            <td>IoT-sensoren</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Cellulaire Generaties</h2>
+                    <table>
+                        <tr>
+                            <th>Generatie</th>
+                            <th>Jaar</th>
+                            <th>Snelheid</th>
+                            <th>Kenmerken</th>
+                        </tr>
+                        <tr>
+                            <td>1G</td>
+                            <td>1980s</td>
+                            <td>2.4 kb/s</td>
+                            <td>Analoog spraak</td>
+                        </tr>
+                        <tr>
+                            <td>2G</td>
+                            <td>1990s</td>
+                            <td>300 kb/s</td>
+                            <td>SMS, MMS</td>
+                        </tr>
+                        <tr>
+                            <td>3G</td>
+                            <td>2000s</td>
+                            <td>2 Mb/s</td>
+                            <td>Mobiel internet</td>
+                        </tr>
+                        <tr>
+                            <td>4G</td>
+                            <td>2010s</td>
+                            <td>100 Mb/s</td>
+                            <td>Streaming, video</td>
+                        </tr>
+                        <tr>
+                            <td>5G</td>
+                            <td>2020s</td>
+                            <td>Tot 10 Gb/s</td>
+                            <td>Ultra-snel, IoT</td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+
+            <!-- Protocollen -->
+            <section>
+                <section>
+                    <h2>Netwerkprotocollen</h2>
+                    <table>
+                        <tr>
+                            <th>Laag</th>
+                            <th>Voorbeelden</th>
+                        </tr>
+                        <tr>
+                            <td>Applicatie</td>
+                            <td>HTTP, MQTT, CoAP, FTP, SMTP</td>
+                        </tr>
+                        <tr>
+                            <td>Transport</td>
+                            <td>TCP, UDP</td>
+                        </tr>
+                        <tr>
+                            <td>Netwerk</td>
+                            <td>IPv4, IPv6</td>
+                        </tr>
+                        <tr>
+                            <td>Datalink</td>
+                            <td>Ethernet, Wi-Fi</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>TCP vs UDP</h2>
+                    <table>
+                        <tr>
+                            <th>Kenmerk</th>
+                            <th>TCP</th>
+                            <th>UDP</th>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Verbindingsgericht</td>
+                            <td>Verbindingsloos</td>
+                        </tr>
+                        <tr>
+                            <td>Betrouwbaarheid</td>
+                            <td>Hoog, met foutcontrole</td>
+                            <td>Laag</td>
+                        </tr>
+                        <tr>
+                            <td>Snelheid</td>
+                            <td>Lager</td>
+                            <td>Hoger</td>
+                        </tr>
+                        <tr>
+                            <td>Gebruik</td>
+                            <td>Web, e-mail</td>
+                            <td>Streaming, games</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>HTTP</h2>
+                    <ul>
+                        <li>Communicatie tussen webserver en browser</li>
+                        <li>Methoden: GET, POST, PUT, DELETE</li>
+                        <li>HTTPS gebruikt SSL/TLS voor beveiliging</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>HTTP-statuscodes</h2>
+                    <table>
+                        <tr>
+                            <td>200</td>
+                            <td>OK</td>
+                        </tr>
+                        <tr>
+                            <td>403</td>
+                            <td>Forbidden</td>
+                        </tr>
+                        <tr>
+                            <td>404</td>
+                            <td>Not Found</td>
+                        </tr>
+                        <tr>
+                            <td>500</td>
+                            <td>Internal Server Error</td>
+                        </tr>
+                        <tr>
+                            <td>503</td>
+                            <td>Service Unavailable</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>IoT-Specifieke Protocollen</h2>
+                    <table>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Eigenschappen</th>
+                        </tr>
+                        <tr>
+                            <td>MQTT</td>
+                            <td>Lichtgewicht, TCP-gebaseerd, publish/subscribe</td>
+                        </tr>
+                        <tr>
+                            <td>CoAP</td>
+                            <td>REST-achtig, UDP, voor kleine apparaten</td>
+                        </tr>
+                        <tr>
+                            <td>AMQP</td>
+                            <td>Betrouwbare messaging, TLS beveiliging</td>
+                        </tr>
+                        <tr>
+                            <td>DDS / WebSockets</td>
+                            <td>Real-time communicatie</td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+
+            <!-- Cloud Systems -->
+            <section>
+                <section>
+                    <h2>Cloud Systems</h2>
+                    <p>“as a Service”-modellen</p>
+                    <img src="../assets/network/aas-basic.png" alt="Cloud as a Service overzicht">
+                </section>
+
+                <section>
+                    <h2>Vergelijking Cloud-modellen</h2>
+                    <table>
+                        <tr>
+                            <th>Model</th>
+                            <th>Beheer door gebruiker</th>
+                            <th>Voorbeeld</th>
+                        </tr>
+                        <tr>
+                            <td>IaaS</td>
+                            <td>VM's, netwerken</td>
+                            <td>AWS EC2</td>
+                        </tr>
+                        <tr>
+                            <td>PaaS</td>
+                            <td>Applicatieontwikkeling</td>
+                            <td>Google App Engine</td>
+                        </tr>
+                        <tr>
+                            <td>SaaS</td>
+                            <td>Gebruik software</td>
+                            <td>Microsoft 365</td>
+                        </tr>
+                        <tr>
+                            <td>BaaS</td>
+                            <td>Back-end diensten</td>
+                            <td>Firebase</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>IoT-Platformen</h2>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Functie</th>
+                        </tr>
+                        <tr>
+                            <td>Device Platform</td>
+                            <td>Sensoren, actuatoren, gateways</td>
+                        </tr>
+                        <tr>
+                            <td>Connectivity Platform</td>
+                            <td>Communicatie tussen devices en cloud</td>
+                        </tr>
+                        <tr>
+                            <td>IoT Platform</td>
+                            <td>Devicebeheer, dataverwerking, analytics</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Bekende IoT-Platformen</h2>
+                    <ul>
+                        <li>AWS IoT</li>
+                        <li>Azure IoT</li>
+                        <li>Google Cloud IoT</li>
+                        <li>IBM Watson IoT</li>
+                        <li>ThingWorx</li>
+                        <li>ThingSpeak</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // <li>https://revealjs.com/initialization/
+        // <li>https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>

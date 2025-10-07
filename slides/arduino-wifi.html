@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Arduino WiFi & MQTT</title>
+        <link rel="stylesheet" href="../dist/reset.css" />
+        <link rel="stylesheet" href="../dist/reveal.css" />
+        <link rel="stylesheet" href="../dist/theme/black.css" />
+        <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
+        <link rel="stylesheet" href="../dist/theme/custom.css" />
+        <link rel="stylesheet" href="../dist/main.css" />
+    </head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- HOOFDSECTIE 1: Introductie -->
+            <section>
+                <section>
+                    <h1>WiFi met Arduino</h1>
+                    <p>Verbinding maken met draadloze netwerken en communiceren via moderne protocollen.</p>
+                </section>
+                <section>
+                    <h2>Doel van deze les</h2>
+                    <ul>
+                        <li>Begrijpen hoe WiFi werkt op een Arduino Uno WiFi Rev2</li>
+                        <li>Gebruik van de WiFiNINA library en MQTT-communicatie</li>
+                        <li>Verkennen van andere netwerkprotocollen (HTTP, CoAP, WebSocket, etc.)</li>
+                        <li>Veilige en betrouwbare IoT-verbindingen opzetten</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 2: Hardware en chipset -->
+            <section>
+                <section>
+                    <h2>Arduino Uno WiFi Rev2 – Hardware</h2>
+                    <ul>
+                        <li>Microcontroller: ATmega4809 (8-bit, 16 MHz)</li>
+                        <li>WiFi-module: u-blox NINA-W102 (gebaseerd op ESP32)</li>
+                        <li>Geïntegreerde antenne + RF-shielding</li>
+                        <li>Ondersteunt 2.4 GHz 802.11 b/g/n</li>
+                    </ul>
+                    <img src="../assets/images/arduino-wifi/unowifi-rev2.png" alt="Arduino Uno WiFi Rev2 hardware">
+                </section>
+
+                <section>
+                    <h2>De NINA-W102 WiFi-chipset</h2>
+                    <ul>
+                        <li>Gebaseerd op een <strong>Espressif ESP32</strong> SoC</li>
+                        <li>Bevat:
+                            <ul>
+                                <li>WiFi- en Bluetooth-stack</li>
+                                <li>Interne flash-geheugen en CPU</li>
+                                <li>SPI-communicatie met de ATmega4809</li>
+                            </ul>
+                        </li>
+                        <li>Firmware wordt aangestuurd via de <strong>WiFiNINA library</strong></li>
+                    </ul>
+                    <p>De NINA-module werkt als een “netwerk-coprocessor”: de ATmega stuurt opdrachten via SPI.</p>
+                </section>
+
+                <section>
+                    <h2>WiFiNINA Firmware</h2>
+                    <ul>
+                        <li>Bevat alle logica voor WiFi-verbinding, IP-stack en beveiliging</li>
+                        <li>Kan worden geüpdatet via de Arduino IDE (Tools → Firmware Updater)</li>
+                        <li>Versiebeheer is belangrijk voor compatibiliteit</li>
+                    </ul>
+                    <pre><code class="language-cpp">
+#include <WiFiNINA.h>
+void setup() {
+  Serial.begin(9600);
+  if (WiFi.status() == WL_NO_MODULE) {
+    Serial.println("WiFi module niet gevonden!");
+    while (true);
+  }
+  String fv = WiFi.firmwareVersion();
+  Serial.print("Firmware versie: ");
+  Serial.println(fv);
+}
+                    </code></pre>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 3: Netwerkconcepten -->
+            <section>
+                <section>
+                    <h2>Netwerkconcepten</h2>
+                    <ul>
+                        <li><strong>IP-adres:</strong> Unieke identificatie op het netwerk</li>
+                        <li><strong>DHCP:</strong> Automatische toewijzing van IP</li>
+                        <li><strong>DNS:</strong> Domeinnaam naar IP-adres vertalen</li>
+                        <li><strong>Poorten:</strong> Bepalen welk proces de data ontvangt</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>TCP vs UDP</h2>
+                    <ul>
+                        <li><strong>TCP:</strong> Betrouwbaar, verbindingsgericht</li>
+                        <li><strong>UDP:</strong> Snel, geen foutcorrectie</li>
+                        <li>Arduino ondersteunt beide via de WiFiNINA library</li>
+                    </ul>
+                    <pre><code class="language-cpp">
+// TCP Client voorbeeld
+WiFiClient client;
+if (client.connect("example.com", 80)) {
+  client.println("GET / HTTP/1.1");
+  client.println("Host: example.com");
+  client.println("Connection: close");
+  client.println();
+}
+                    </code></pre>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 4: Protocollen -->
+            <section>
+                <section>
+                    <h2>Overzicht van protocollen</h2>
+                    <ul>
+                        <li><strong>HTTP/HTTPS</strong> – Webcommunicatie en REST API’s</li>
+                        <li><strong>MQTT</strong> – Lichtgewicht IoT-berichten</li>
+                        <li><strong>WebSocket</strong> – Real-time data</li>
+                        <li><strong>CoAP</strong> – Compact protocol voor sensornetwerken</li>
+                        <li><strong>SNTP</strong> – Tijd synchroniseren met internet</li>
+                        <li><strong>mDNS</strong> – Lokale netwerknaam-resolutie</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>HTTP en REST API’s</h2>
+                    <p>HTTP wordt vaak gebruikt om data te verzenden naar webservers of cloudplatforms.</p>
+                    <pre><code class="language-cpp">
+WiFiClient client;
+if (client.connect("api.thingspeak.com", 80)) {
+  client.print("GET /update?api_key=XYZ&field1=25 HTTP/1.1\r\n");
+  client.print("Host: api.thingspeak.com\r\n");
+  client.print("Connection: close\r\n\r\n");
+}
+                    </code></pre>
+                    <p><strong>HTTPS</strong> vereist TLS-beveiliging en certificaatbeheer (WiFiSSLClient).</p>
+                </section>
+
+                <section>
+                    <h2>MQTT in detail</h2>
+                    <ul>
+                        <li>Client-server model met topics</li>
+                        <li>Berichten kunnen worden gepubliseerd of ontvangen (subscribe)</li>
+                        <li>Zeer efficiënt voor IoT sensordata</li>
+                    </ul>
+                    <img src="../assets/images/arduino-wifi/mqtt-diagram.png" alt="MQTT diagram">
+                </section>
+
+                <section>
+                    <h2>CoAP</h2>
+                    <ul>
+                        <li>Constrained Application Protocol (RFC 7252)</li>
+                        <li>Lijkt op HTTP, maar werkt via UDP</li>
+                        <li>Geschikt voor sensornetwerken met lage bandbreedte</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>WebSockets</h2>
+                    <ul>
+                        <li>Bidirectionele communicatie tussen client en server</li>
+                        <li>Ideaal voor real-time dashboards</li>
+                        <li>Kan worden gecombineerd met MQTT over WebSocket</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 5: Beveiliging -->
+            <section>
+                <section>
+                    <h2>Beveiliging en privacy</h2>
+                    <ul>
+                        <li><strong>WPA2</strong> – standaard WiFi-beveiliging</li>
+                        <li><strong>TLS/SSL</strong> – versleutelde verbindingen</li>
+                        <li><strong>API Keys</strong> – authenticatie voor online services</li>
+                        <li><strong>secrets.h</strong> – veilige opslag van wachtwoorden</li>
+                    </ul>
+                    <pre><code class="language-cpp">
+// secrets.h
+#define SECRET_SSID "MijnNetwerk"
+#define SECRET_PASS "SuperGeheim!"
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>HTTPS en certificaten</h2>
+                    <pre><code class="language-cpp">
+#include <WiFiSSLClient.h>
+WiFiSSLClient client;
+if (client.connect("example.com", 443)) {
+  client.println("GET /secure HTTP/1.1");
+  client.println("Host: example.com");
+  client.println("Connection: close");
+  client.println();
+}
+                    </code></pre>
+                    <p>Certificaten kunnen vooraf in de NINA-firmware worden geladen via de Arduino IDE.</p>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 6: Praktische toepassingen -->
+            <section>
+                <section>
+                    <h2>Toepassing 1 – Sensor data naar de cloud</h2>
+                    <ul>
+                        <li>Lees temperatuur of vochtigheid uit</li>
+                        <li>Stuur periodiek data naar een IoT-platform (b.v. ThingsBoard, Adafruit IO, Blynk)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Toepassing 2 – Lokale webserver</h2>
+                    <p>Arduino kan zelf een eenvoudige webpagina hosten voor sensorwaarden.</p>
+                    <pre><code class="language-cpp">
+WiFiServer server(80);
+void loop() {
+  WiFiClient client = server.available();
+  if (client) {
+    client.println("HTTP/1.1 200 OK");
+    client.println("Content-Type: text/html");
+    client.println();
+    client.println("<h1>Temperatuur: 23°C</h1>");
+  }
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Toepassing 3 – OTA updates</h2>
+                    <ul>
+                        <li>OTA = Over-The-Air firmware updates</li>
+                        <li>Vermijdt fysieke verbinding met USB</li>
+                        <li>Wordt ondersteund via speciale WiFiNINA-firmwareversies</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 7: Debugging & best practices -->
+            <section>
+                <section>
+                    <h2>Debugging tips</h2>
+                    <ul>
+                        <li>Controleer <code>WiFi.status()</code> regelmatig</li>
+                        <li>Gebruik <code>Serial.print()</code> voor statusmeldingen</li>
+                        <li>Controleer firmwareversie bij verbindingsproblemen</li>
+                        <li>Gebruik korte delays bij reconnects</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Best practices</h2>
+                    <ul>
+                        <li>Vermijd gevoelige data in code</li>
+                        <li>Gebruik retries en timeouts</li>
+                        <li>Gebruik JSON voor gestructureerde data</li>
+                        <li>Test op een stabiele WiFi-omgeving</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- HOOFDSECTIE 8: Samenvatting -->
+            <section>
+                <h2>Samenvatting</h2>
+                <ul>
+                    <li>Arduino Uno WiFi Rev2 gebruikt de NINA-W102 WiFi-chip</li>
+                    <li>WiFiNINA library beheert verbindingen</li>
+                    <li>Ondersteuning voor meerdere protocollen (HTTP, MQTT, CoAP...)</li>
+                    <li>Beveiliging via WPA2 en SSL/TLS</li>
+                    <li>Veelzijdig inzetbaar voor IoT-projecten</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="../dist/languageButton.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
